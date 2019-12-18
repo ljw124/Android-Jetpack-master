@@ -11,7 +11,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 
-import com.ljw.selfmvvm.ui.activity.WelComeActivity;
+import com.ljw.selfmvvm.ui.welcome.WelComeActivity;
 
 import java.io.File;
 import java.io.FileOutputStream;

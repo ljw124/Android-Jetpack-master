@@ -22,7 +22,7 @@
             android:orientation="vertical">
 
             <!-- 这个控件还能往里面插入布局，假如此时功能，满足不了需求时，可以自定义布局-->
-            <com.ljw.selfmvvm.customview.CustomTitleBar
+            <com.ljw.selfmvvm.custom.CustomTitleBar
                 android:id="@+id/titleBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

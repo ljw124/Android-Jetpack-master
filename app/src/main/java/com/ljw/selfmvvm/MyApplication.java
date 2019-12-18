@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import com.ljw.selfmvvm.bean.UserBean;
-import com.ljw.selfmvvm.customview.x5webview.X5InitService;
+import com.ljw.selfmvvm.custom.x5webview.X5InitService;
 import com.ljw.selfmvvm.utils.PreferenceUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;

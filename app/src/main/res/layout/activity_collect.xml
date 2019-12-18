@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.ljw.selfmvvm.customview.CustomTitleBar
+        <com.ljw.selfmvvm.custom.CustomTitleBar
             android:id="@+id/titleBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

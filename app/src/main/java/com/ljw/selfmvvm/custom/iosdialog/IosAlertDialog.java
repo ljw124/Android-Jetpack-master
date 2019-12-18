@@ -1,4 +1,4 @@
-package com.ljw.selfmvvm.customview.iosdialog;
+package com.ljw.selfmvvm.custom.iosdialog;
 
 import android.app.Dialog;
 import android.content.Context;

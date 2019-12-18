@@ -1,4 +1,4 @@
-package com.ljw.selfmvvm.customview.x5webview;
+package com.ljw.selfmvvm.custom.x5webview;
 
 import android.app.IntentService;
 import android.content.Intent;

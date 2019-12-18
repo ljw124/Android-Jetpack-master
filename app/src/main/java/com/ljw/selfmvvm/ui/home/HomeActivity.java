@@ -17,7 +17,7 @@ import com.ljw.selfmvvm.bean.HomeBean;
 import com.ljw.selfmvvm.bean.HomeCollectionBean;
 import com.ljw.selfmvvm.bean.basebean.EventBusBean;
 import com.ljw.selfmvvm.bean.basebean.ParamsBuilder;
-import com.ljw.selfmvvm.customview.iosdialog.DialogUtil;
+import com.ljw.selfmvvm.custom.iosdialog.DialogUtil;
 import com.ljw.selfmvvm.databinding.ActivityHomeBinding;
 import com.ljw.selfmvvm.ui.collect.CollectActivity;
 import com.ljw.selfmvvm.ui.login.LoginActivity;
@@ -33,7 +33,6 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  * Create by Ljw on 2019/12/13 14:11
@@ -52,22 +51,9 @@ public class HomeActivity extends BaseActivity<HomeViewModel, ActivityHomeBindin
         return R.layout.activity_home;
     }
 
-    public void openDrawLayout() {
-        if (binding.drawerLayout.isDrawerOpen(binding.txtTest)) {
-            binding.drawerLayout.closeDrawer(binding.txtTest);
-        } else {
-            binding.drawerLayout.openDrawer(binding.txtTest);
-        }
-    }
-
     @Override
     protected void processLogic() {
-        EventBus.getDefault().register(this);
-        initStatusBar();
-        //关闭手势运动
-        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-        binding.setOnclickListener(this);
-        initBanner();
+        initView();
 
         getBanner();
         getHomeArticles(curPage, null);
@@ -77,20 +63,42 @@ public class HomeActivity extends BaseActivity<HomeViewModel, ActivityHomeBindin
         binding.recyclerView.setAdapter(adapter);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);
+    private void initView() {
+        EventBus.getDefault().register(this);
+        //初始化 ImmersionBar
+        mImmersionBar = ImmersionBar.with(this);
+        mImmersionBar.init();
+        //关闭手势运动
+        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        binding.setOnclickListener(this);
+        //初始化 Banner
+        binding.banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
+        binding.banner.setImageLoader(new GlideImageLoader());
     }
 
-    private void initStatusBar() {
-        mImmersionBar = ImmersionBar.with(this);
-//        mImmersionBar = ImmersionBar.with(this)
-//                .statusBarColor(R.color.yellow)
-//                .keyboardEnable(true)
-//                .keyboardMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
-//                .fitsSystemWindows(true);
-        mImmersionBar.init();
+    private void getBanner() {
+        mViewModel.getBanner().observe(this, resource -> resource.handler(new OnCallBack<List<BannerBean>>() {
+            @Override
+            public void onSuccess(List<BannerBean> data) {
+                bannerBeans.addAll(data);
+                updateBanner(data);
+            }
+        }));
+    }
+
+    private void updateBanner(List<BannerBean> data) {
+        if (data == null || data.size() <= 0) {
+            return;
+        }
+        List<String> urls = new ArrayList<>();
+        List<String> titles = new ArrayList<>();
+        for (int i = 0; i < data.size(); i++) {
+            urls.add(data.get(i).getImagePath());
+            titles.add(data.get(i).getTitle());
+        }
+        binding.banner.setBannerTitles(titles);
+        binding.banner.setImages(urls);
+        binding.banner.start();
     }
 
     @Override
@@ -134,17 +142,6 @@ public class HomeActivity extends BaseActivity<HomeViewModel, ActivityHomeBindin
 
             }
         });
-    }
-
-
-    private void getBanner() {
-        mViewModel.getBanner().observe(this, resource -> resource.handler(new OnCallBack<List<BannerBean>>() {
-            @Override
-            public void onSuccess(List<BannerBean> data) {
-                bannerBeans.addAll(data);
-                updateBanner(data);
-            }
-        }));
     }
 
     private void getHomeArticles(int currenPage, ParamsBuilder paramsBuilder) {
@@ -244,6 +241,14 @@ public class HomeActivity extends BaseActivity<HomeViewModel, ActivityHomeBindin
         }
     }
 
+    public void openDrawLayout() {
+        if (binding.drawerLayout.isDrawerOpen(binding.txtTest)) {
+            binding.drawerLayout.closeDrawer(binding.txtTest);
+        } else {
+            binding.drawerLayout.openDrawer(binding.txtTest);
+        }
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -256,25 +261,10 @@ public class HomeActivity extends BaseActivity<HomeViewModel, ActivityHomeBindin
         binding.banner.stopAutoPlay();
     }
 
-    private void updateBanner(List<BannerBean> data) {
-        if (data == null || data.size() <= 0) {
-            return;
-        }
-        List<String> urls = new ArrayList<>();
-        List<String> titles = new ArrayList<>();
-        for (int i = 0; i < data.size(); i++) {
-            urls.add(data.get(i).getImagePath());
-            titles.add(data.get(i).getTitle());
-        }
-        binding.banner.setBannerTitles(titles);
-        binding.banner.setImages(urls);
-        binding.banner.start();
-    }
-
-    private void initBanner() {
-        binding.banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
-        binding.banner.setImageLoader(new GlideImageLoader());
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     @Override

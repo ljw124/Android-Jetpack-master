@@ -1,4 +1,4 @@
-package com.ljw.selfmvvm.customview;
+package com.ljw.selfmvvm.custom;
 
 import android.content.Context;
 import android.content.res.TypedArray;

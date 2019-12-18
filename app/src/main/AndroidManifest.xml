@@ -24,7 +24,7 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true">
         <activity
-            android:name="com.ljw.selfmvvm.ui.activity.WelComeActivity"
+            android:name="com.ljw.selfmvvm.ui.welcome.WelComeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/FullScreen_AppTheme">
             <intent-filter>
@@ -53,7 +53,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/WhiteFront_AppTheme"/>
 
-        <service android:name="com.ljw.selfmvvm.customview.x5webview.X5InitService" />
+        <service android:name="com.ljw.selfmvvm.custom.x5webview.X5InitService" />
 
     </application>
 

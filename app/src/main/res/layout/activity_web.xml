@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.ljw.selfmvvm.customview.CustomTitleBar
+        <com.ljw.selfmvvm.custom.CustomTitleBar
             android:id="@+id/titleBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
             app:hl_textTitle=""
             app:hl_textTitleColor="#fff" />
 
-        <com.ljw.selfmvvm.customview.x5webview.X5WebView
+        <com.ljw.selfmvvm.custom.x5webview.X5WebView
             android:id="@+id/webViewX5"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

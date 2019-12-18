@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.google.gson.JsonSyntaxException;
 import com.ljw.selfmvvm.R;
 import com.ljw.selfmvvm.bean.basebean.Resource;
-import com.ljw.selfmvvm.customview.CustomProgress;
+import com.ljw.selfmvvm.custom.CustomProgress;
 import com.ljw.selfmvvm.utils.ToastUtils;
 import com.ljw.selfmvvm.utils.networks.NetWorkUtils;
 import com.trello.rxlifecycle2.components.support.RxFragmentActivity;
