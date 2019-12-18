@@ -4,9 +4,7 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-
 import com.trello.rxlifecycle2.LifecycleTransformer;
-
 import java.util.ArrayList;
 
 /**

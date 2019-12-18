@@ -1,4 +1,4 @@
-package com.ljw.selfmvvm.net.uploadutils;
+package com.ljw.selfmvvm.net.upload;
 
 import android.os.Handler;
 import android.os.Looper;

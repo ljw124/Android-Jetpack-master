@@ -4,7 +4,6 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
-
 import androidx.annotation.RequiresPermission;
 
 /**
@@ -17,7 +16,6 @@ public class NetWorkUtils {
         NetworkInfo activeNetInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetInfo != null && activeNetInfo.isConnected();
     }
-
 
     private NetWorkUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");

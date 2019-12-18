@@ -22,19 +22,16 @@ public class WebActivity extends BaseActivity<NormalViewModel, ActivityWebBindin
         binding.titleBar.bar_left_btn.setOnClickListener(this);
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();
         binding.webViewX5.onResume();
     }
 
-
     @Override
     protected void onPause() {
         super.onPause();
         binding.webViewX5.onPause();
-
     }
 
     @Override

@@ -6,7 +6,7 @@ package com.ljw.selfmvvm.utils;
 public class ButtonClickUtils {
 
     private ButtonClickUtils() {
-        throw new UnsupportedOperationException("u can't instantiate me...");
+        throw new UnsupportedOperationException("you can't instantiate me...");
     }
 
     // 两次点击按钮之间的点击间隔不能少于1000毫秒

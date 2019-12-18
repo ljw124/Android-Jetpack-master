@@ -1,4 +1,4 @@
-package com.ljw.selfmvvm.net.downloadutils;
+package com.ljw.selfmvvm.net.download;
 
 import com.ljw.selfmvvm.bean.basebean.Resource;
 

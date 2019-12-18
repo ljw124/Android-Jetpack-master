@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
-
-
 import com.ljw.selfmvvm.MyApplication;
 
 import java.util.ArrayList;
@@ -27,7 +25,6 @@ public class NetStateChangeReceiver extends BroadcastReceiver {
 
     private List<NetStateChangeObserver> mObservers = new ArrayList<>();
 
-
     //注册了网络状态改变监听，一旦网络状态改变就会调用的方法
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -43,12 +40,10 @@ public class NetStateChangeReceiver extends BroadcastReceiver {
         context.registerReceiver( InstanceHolder.INSTANCE,intentFilter);
     }
 
-
     //注释广播
     public static void unRegisterReceiver(Context context){
         context.unregisterReceiver( InstanceHolder.INSTANCE);
     }
-
 
     //添加观察者，一旦有改变，观察者会通知
     public static void registerObserver(NetStateChangeObserver observer){

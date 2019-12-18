@@ -1,11 +1,9 @@
 package com.ljw.selfmvvm.net;
 
-
 import com.ljw.selfmvvm.bean.BannerBean;
 import com.ljw.selfmvvm.bean.HomeCollectionBean;
 import com.ljw.selfmvvm.bean.UserBean;
 import com.ljw.selfmvvm.bean.basebean.ResponModel;
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -30,7 +28,8 @@ import retrofit2.http.Url;
  * Retrofit 接口请求配置都在这
  */
 public interface RetrofitApiService {
-    //wanAndroid的，轮播banner的接口
+
+    //轮播banner的接口
     @GET("banner/json")
     Observable<ResponModel<List<BannerBean>>> getBanner();
 
@@ -60,8 +59,6 @@ public interface RetrofitApiService {
     @POST("lg/uncollect/{id}/json")
     Observable<ResponModel<String>> unCollectByMe(@Path("id") int id,@Field("originId")int originId);
 
-
-
     //退出登录
     @GET("user/logout/json")
     Observable<ResponModel<String>> loginOut();
@@ -73,7 +70,6 @@ public interface RetrofitApiService {
     //Retrofit get请求
     @GET("xiandu/category/wow")
     Observable<String> getGank(@Query("en_name") String en_name);
-
 
     //Retrofit post请求
     @POST("add2gank")
@@ -90,7 +86,7 @@ public interface RetrofitApiService {
     //Retrofit下载文件
     @GET
     @Streaming
-    //10以上用@streaming。不会造成oom，反正你用就是了
+    //10以上用@streaming。不会造成oom，反正用就是了
     Observable<ResponseBody> downloadFile(@Url String url);
 
     @GET

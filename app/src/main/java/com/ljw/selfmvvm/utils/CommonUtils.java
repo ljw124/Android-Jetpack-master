@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 public class CommonUtils {
 
     private CommonUtils() {
-        throw new UnsupportedOperationException("u can't instantiate me...");
+        throw new UnsupportedOperationException("you can't instantiate me...");
     }
 
     /**

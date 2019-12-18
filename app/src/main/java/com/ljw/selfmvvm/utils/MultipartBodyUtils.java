@@ -1,6 +1,6 @@
 package com.ljw.selfmvvm.utils;
 
-import com.ljw.selfmvvm.net.uploadutils.UploadFileRequestBody;
+import com.ljw.selfmvvm.net.upload.UploadFileRequestBody;
 
 import java.io.File;
 import java.util.Map;

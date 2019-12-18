@@ -12,7 +12,7 @@ import com.ljw.selfmvvm.MyApplication;
 public class ActivityUtils {
 
     private ActivityUtils() {
-        throw new UnsupportedOperationException("u can't instantiate me...");
+        throw new UnsupportedOperationException("you can't instantiate me...");
     }
 
     public static void startActivity(Context context, Class<? extends Activity> clz) {

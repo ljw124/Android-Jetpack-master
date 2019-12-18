@@ -11,7 +11,7 @@ import com.ljw.selfmvvm.net.Interceptor.NetCacheInterceptor;
 import com.ljw.selfmvvm.net.Interceptor.OfflineCacheInterceptor;
 import com.ljw.selfmvvm.net.RetrofitApiService;
 import com.ljw.selfmvvm.net.RetrofitManager;
-import com.ljw.selfmvvm.net.downloadutils.DownFileUtils;
+import com.ljw.selfmvvm.net.download.DownFileUtils;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
