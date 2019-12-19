@@ -9,10 +9,7 @@ import android.os.Environment;
 import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
-
-
 import com.ljw.selfmvvm.ui.welcome.WelComeActivity;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
@@ -31,6 +28,7 @@ import java.util.Map;
  * 要打开存储权限
  */
 public class CrashHandler implements Thread.UncaughtExceptionHandler {
+
     public static final String TAG = "CrashHandler";
 
     //系统默认的UncaughtException处理类
@@ -45,11 +43,15 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     //用于格式化日期,作为日志文件名的一部分
     private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 
-    /** 保证只有一个CrashHandler实例 */
+    /**
+     * 保证只有一个CrashHandler实例
+     */
     private CrashHandler() {
     }
 
-    /** 获取CrashHandler实例 ,单例模式 */
+    /**
+     * 获取CrashHandler实例 ,单例模式
+     */
     public static CrashHandler getInstance() {
         return INSTANCE;
     }
@@ -95,7 +97,6 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         }
     }
 
-
     /**
      * 自定义错误处理,收集错误信息 发送错误报告等操作均在此完成.
      *
@@ -124,6 +125,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     /**
      * 收集设备参数信息
+     *
      * @param ctx
      */
     public void collectDeviceInfo(Context ctx) {

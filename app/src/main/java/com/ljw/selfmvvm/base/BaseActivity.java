@@ -77,6 +77,7 @@ public abstract class BaseActivity<VM extends BaseViewModel, VDB extends ViewDat
         return this;
     }
 
+    //向子类开放的业务回调接口，通用的业务（比如错误提示）在这里实现
     public abstract class OnCallBack<T> implements Resource.OnHandleCallback<T> {
         @Override
         public void onLoading(String showMessage) {

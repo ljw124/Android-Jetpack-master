@@ -12,4 +12,36 @@
         <attr name="hl_divideColor" format="color" />
     </declare-styleable>
 
+    <declare-styleable name="ShadowLayout">
+        <!--阴影的圆角大小-->
+        <attr format="dimension" name="hl_cornerRadius"/>
+        <!--阴影的扩散范围(也可以理解为扩散程度)-->
+        <attr format="dimension" name="hl_shadowLimit"/>
+        <attr format="color" name="hl_shadowColor"/>
+        <attr format="color" name="hl_shadowBackColor"/>
+        <!--x轴的偏移量-->
+        <attr format="dimension" name="hl_dx"/>
+        <!--y轴的偏移量-->
+        <attr format="dimension" name="hl_dy"/>
+        <!--左边是否显示阴影-->
+        <attr format="boolean" name="hl_leftShow"/>
+        <!--右边是否显示阴影-->
+        <attr format="boolean" name="hl_rightShow"/>
+        <!--上边是否显示阴影-->
+        <attr format="boolean" name="hl_topShow"/>
+        <!--下面是否显示阴影-->
+        <attr format="boolean" name="hl_bottomShow"/>
+    </declare-styleable>
+
+    <declare-styleable name="SmartLoadingView">
+        <attr format="string" name="textStr"/>
+        <attr format="string" name="errorStr"/>
+        <attr format="color" name="cannotclickBg"/>
+        <attr format="color" name="errorBg"/>
+        <attr format="color" name="normalBg"/>
+        <attr format="dimension" name="cornerRaius"/>
+        <attr format="color" name="textColor"/>
+        <attr format="dimension" name="textSize"/>
+        <attr format="integer" name="scrollSpeed"/>
+    </declare-styleable>
 </resources>

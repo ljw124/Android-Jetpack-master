@@ -418,4 +418,6 @@
     <dimen name="sp_42">42sp</dimen>
     <dimen name="sp_48">48sp</dimen>
 
+    <dimen name="default_corner">0dp</dimen>
+    <dimen name="dp_17_5">17.5dp</dimen>
 </resources>

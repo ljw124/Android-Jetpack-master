@@ -11,19 +11,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-
-import com.lihang.nbadapter.AnimationType;
-import com.lihang.nbadapter.HeadHolder;
+import com.ljw.selfmvvm.R;
 
 import java.util.ArrayList;
 
 /**
  * Create by Ljw on 2019/12/13 17:36
+ * https://blog.csdn.net/leol_2/article/details/100143081
  */
 public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
     //正常type 0;
     final int TYPE_NORMAL = 0;
-    //头部type默认小于-100 > -10000  我相信头部不能能回家到9900个，如果超过这个数把底部继续拉下限
+    //头部type默认小于-100 > -10000
     final int TYPE_HEAD = -100;
     //底部type默认小于-10000
     final int TYPE_FOOT = -10000;
@@ -37,7 +36,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
 
     /*
      * 下列参数和设置动画相关
-     * */
+     */
     //记录时间差，看看是否大于50，防止动画一起执行；
     private int currentMillons = 0;
     //记录已经启动过动画的position的位置
@@ -127,7 +126,6 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
         } else {
             return getViewHolder(viewGroup, viewType);
         }
-
     }
 
     public abstract void onBindMyViewHolder(RecyclerView.ViewHolder viewHolder, int position);
@@ -207,7 +205,6 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
                     viewHolder.itemView.startAnimation(animator);
                 }
             }
-
         }
     }
 
@@ -219,13 +216,13 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
         return position - headViews.size();
     }
 
-    public com.lihang.nbadapter.BaseAdapter.OnItemClickListener<T> onItemClickListener;
+    public BaseAdapter.OnItemClickListener<T> onItemClickListener;
 
-    public com.lihang.nbadapter.BaseAdapter.OnItemClickListener<T> getOnItemClickListener() {
+    public BaseAdapter.OnItemClickListener<T> getOnItemClickListener() {
         return onItemClickListener;
     }
 
-    public void setOnItemClickListener(com.lihang.nbadapter.BaseAdapter.OnItemClickListener<T> onItemClickListener) {
+    public void setOnItemClickListener(BaseAdapter.OnItemClickListener<T> onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 
@@ -233,13 +230,13 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
         void onItemClick(T item, int position);
     }
 
-    public com.lihang.nbadapter.BaseAdapter.OnItemLongClickListener<T> onItemLongClickListener;
+    public BaseAdapter.OnItemLongClickListener<T> onItemLongClickListener;
 
-    public com.lihang.nbadapter.BaseAdapter.OnItemLongClickListener<T> getOnItemLongClickListener() {
+    public BaseAdapter.OnItemLongClickListener<T> getOnItemLongClickListener() {
         return onItemLongClickListener;
     }
 
-    public void setOnItemLongClickListener(com.lihang.nbadapter.BaseAdapter.OnItemLongClickListener<T> onItemLongClickListener) {
+    public void setOnItemLongClickListener(BaseAdapter.OnItemLongClickListener<T> onItemLongClickListener) {
         this.onItemLongClickListener = onItemLongClickListener;
     }
 
@@ -441,7 +438,6 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
             });
 
         } else if (recyclerView.getLayoutManager() instanceof StaggeredGridLayoutManager) {
-
             recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
                 @Override
                 public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
@@ -502,4 +498,37 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
         this.alwaysShow = alwaysShow;
     }
 
+    //AnimationType
+    public enum AnimationType {
+        TRANSLATE_FROM_RIGHT(R.anim.item_translate_byright),
+
+        TRANSLATE_FROM_LEFT(R.anim.item_translate_byleft),
+
+        TRANSLATE_FROM_BOTTOM(R.anim.item_translate_bybottom),
+
+        SCALE(R.anim.item_scale_anim),
+
+        ALPHA(R.anim.item_alpha_anim);
+
+        private int resId;
+
+        AnimationType(int resId) {
+            this.resId = resId;
+        }
+
+        public int getResId() {
+            return resId;
+        }
+
+        public void setResId(int resId) {
+            this.resId = resId;
+        }
+    }
+
+    //ViewHolder
+    public static class HeadHolder extends RecyclerView.ViewHolder {
+        public HeadHolder(@NonNull View itemView) {
+            super(itemView);
+        }
+    }
 }

@@ -6,7 +6,7 @@
 
     </data>
 
-    <com.lihang.ShadowLayout
+    <com.ljw.selfmvvm.custom.ShadowLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_10"
@@ -99,6 +99,6 @@
                 android:src="@drawable/zan_click_userdetail" />
         </RelativeLayout>
 
-    </com.lihang.ShadowLayout>
+    </com.ljw.selfmvvm.custom.ShadowLayout>
 
 </layout>

@@ -1,9 +1,9 @@
 package com.ljw.selfmvvm.ui.collect;
 
 import android.view.View;
-import com.lihang.nbadapter.BaseAdapter;
 import com.ljw.selfmvvm.R;
 import com.ljw.selfmvvm.base.BaseActivity;
+import com.ljw.selfmvvm.base.BaseAdapter;
 import com.ljw.selfmvvm.base.WebActivity;
 import com.ljw.selfmvvm.bean.HomeBean;
 import com.ljw.selfmvvm.bean.HomeCollectionBean;

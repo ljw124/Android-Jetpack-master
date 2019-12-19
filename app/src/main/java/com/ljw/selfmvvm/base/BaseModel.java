@@ -3,7 +3,6 @@ package com.ljw.selfmvvm.base;
 import android.text.TextUtils;
 
 import androidx.lifecycle.MutableLiveData;
-
 import com.ljw.selfmvvm.bean.basebean.ParamsBuilder;
 import com.ljw.selfmvvm.bean.basebean.Resource;
 import com.ljw.selfmvvm.bean.basebean.ResponModel;
@@ -15,7 +14,6 @@ import com.ljw.selfmvvm.net.download.DownFileUtils;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
-
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -46,7 +44,7 @@ public abstract class BaseModel {
         this.onNetTags = onNetTags;
     }
 
-    //向外开发处理业务的入口
+    //向外开放处理业务的入口
     public <T> MutableLiveData<T> observeGo(Observable observable, final MutableLiveData<T> liveData){
         return observeGo(observable, liveData, null);
     }

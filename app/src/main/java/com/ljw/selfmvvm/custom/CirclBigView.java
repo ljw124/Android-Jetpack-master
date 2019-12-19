@@ -1,0 +1,113 @@
+package com.ljw.selfmvvm.custom;
+
+import android.animation.Animator;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.util.AttributeSet;
+import android.view.View;
+import androidx.annotation.Nullable;
+
+import com.ljw.selfmvvm.R;
+import com.ljw.selfmvvm.utils.UIUtil;
+
+/**
+ * Create by Ljw on 2019/12/19 11:35
+ * 圆圈扩散自定义View
+ */
+public class CirclBigView extends View {
+
+    //圆圈扩散动画
+    private ValueAnimator animator_big;
+    private int myRadius;
+    //父类控件半径(父类最短一边,长度的一半)
+    private int fatherRadius;
+    private Paint showPaint;
+    private int y;//当前Y轴位置
+    private int x;//当前X轴位置
+
+    //最大能扩散到的半径
+    private int maxRadius;
+
+    public void setXY(int x, int y) {
+        this.x = x;
+        this.y = y;
+        int y_true = y + fatherRadius;
+        //知道了view圆心，计算出到手机4个角的距离，以最大距离为准
+        int left_top = (int) Math.sqrt((x * x) + (y_true * y_true));
+        int left_bottom = (int) Math.sqrt((x * x) + ((UIUtil.getHeight(getContext()) - y_true) * (UIUtil.getHeight(getContext()) - y_true)));
+
+        int right_top = (int) Math.sqrt(((UIUtil.getWidth(getContext()) - x) * (UIUtil.getWidth(getContext()) - x)) + (y_true * y_true));
+        int right_bottom = (int) Math.sqrt(((UIUtil.getWidth(getContext()) - x) * (UIUtil.getWidth(getContext()) - x)) + ((UIUtil.getHeight(getContext()) - y_true) * (UIUtil.getHeight(getContext()) - y_true)));
+
+        int left_big = left_top >= left_bottom ? left_top : left_bottom;
+        int right_big = right_top >= right_bottom ? right_top : right_bottom;
+        maxRadius = left_big >= right_big ? left_big : right_big;
+        //这里虚拟键有个bug，我们把半径大小稍加长
+        maxRadius = maxRadius + UIUtil.getWidth(getContext()) / 6;
+
+        animator_big = ValueAnimator.ofInt(myRadius, maxRadius);
+        animator_big.setDuration(200);
+        animator_big.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                myRadius = (int) valueAnimator.getAnimatedValue();
+                postInvalidate();
+            }
+        });
+
+        invalidate();
+    }
+
+    public void setRadius(int radius) {
+        myRadius = radius;
+        fatherRadius = radius;
+    }
+
+    public void setCircleR(int currentR) {
+        myRadius = currentR;
+        postInvalidate();
+    }
+
+    public CirclBigView(Context context) {
+        this(context, null);
+    }
+
+    public CirclBigView(Context context, @Nullable AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public CirclBigView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        showPaint = new Paint();
+        showPaint.setAntiAlias(true);
+        showPaint.setStyle(Paint.Style.FILL);
+        showPaint.setColor(getResources().getColor(R.color.guide_anim));
+    }
+
+    public void setColorBg(int colorBg) {
+        showPaint.setColor(colorBg);
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        canvas.drawCircle(x, y + fatherRadius, myRadius, showPaint);
+    }
+
+    Animator.AnimatorListener myAnimatorListener;
+
+    public void startShowAni(Animator.AnimatorListener circleEndListener) {
+        if (myAnimatorListener == null) {
+            myAnimatorListener = circleEndListener;
+        }
+
+        if (!animator_big.isRunning()) {
+            animator_big.start();
+        }
+        if (myAnimatorListener != null) {
+            animator_big.addListener(myAnimatorListener);
+        }
+    }
+}
