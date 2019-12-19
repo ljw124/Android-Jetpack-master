@@ -25,6 +25,7 @@ import com.ljw.selfmvvm.R;
 
 /**
  * Create by Ljw on 2019/12/19 11:27
+ * 自定义登录按钮
  */
 public class SmartLoadingView extends View {
 
@@ -107,18 +108,15 @@ public class SmartLoadingView extends View {
      */
     private ValueAnimator animator_rect_to_angle;
 
-
     /**
      * 圆角矩形到矩形的动画
      */
     private ValueAnimator animator_angle_to_rect;
 
-
     /**
      * 文字长度过长时，开启的文字滚动动画
      */
     private ValueAnimator animator_text_scroll;
-
 
     /**
      * 是否开始绘制对勾
@@ -135,7 +133,6 @@ public class SmartLoadingView extends View {
      */
     private PathEffect effect;
 
-
     /**
      * 路径--用来获取对勾的路径
      */
@@ -145,7 +142,6 @@ public class SmartLoadingView extends View {
      */
     private PathMeasure pathMeasure;
 
-
     /**
      * 加载动画相关
      */
@@ -153,7 +149,6 @@ public class SmartLoadingView extends View {
     private int startAngle = 0;
     private int progAngle = 30;
     private boolean isAdd = true;
-
 
     /*
      * 以下是自定义属性
@@ -177,7 +172,6 @@ public class SmartLoadingView extends View {
      */
     private int textColor;
 
-
     /**
      * 字体大小
      */
@@ -188,14 +182,12 @@ public class SmartLoadingView extends View {
      */
     private int scrollSpeed;
 
-
     /**
      * 按钮文字字符串
      */
     private String buttonString = "点击联网";
     private String normalString = "点击联网";
     private String errorString = "网络错误";
-
 
     /**
      * 是否在加载状态中
@@ -204,13 +196,11 @@ public class SmartLoadingView extends View {
         return isLoading;
     }
 
-
     /**
      * 用于绘画文字
      */
     private Path textPath = new Path();
     private boolean directionFlag = true;
-
 
     public SmartLoadingView(Context context) {
         this(context, null);
@@ -226,14 +216,12 @@ public class SmartLoadingView extends View {
         initPaint();
     }
 
-
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         height = measuredHeight(heightMeasureSpec);
         width = measureWidth(widthMeasureSpec);
         setMeasuredDimension(width, height);
     }
-
 
     /**
      * 测量宽
@@ -273,7 +261,6 @@ public class SmartLoadingView extends View {
         }
         return result;
     }
-
 
     public void init(AttributeSet attrs) {
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.SmartLoadingView);
@@ -334,7 +321,6 @@ public class SmartLoadingView extends View {
         });
     }
 
-
     /**
      * 设置圆角矩形过度到圆的动画
      * &圆到圆角矩形
@@ -363,7 +349,6 @@ public class SmartLoadingView extends View {
             }
         });
 
-
         animator_rect_to_angle = ValueAnimator.ofInt(obtainCircleAngle, height / 2);
         animator_rect_to_angle.setDuration(duration);
         animator_rect_to_angle.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -373,7 +358,6 @@ public class SmartLoadingView extends View {
                 invalidate();
             }
         });
-
 
         animator_squareToRect = ValueAnimator.ofInt(default_all_distance, 0);
         animator_squareToRect.setDuration(duration);
@@ -398,7 +382,6 @@ public class SmartLoadingView extends View {
             }
         });
 
-
         animator_angle_to_rect = ValueAnimator.ofInt(height / 2, obtainCircleAngle);
         animator_angle_to_rect.setDuration(duration);
         animator_angle_to_rect.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -410,7 +393,6 @@ public class SmartLoadingView extends View {
         });
 
     }
-
 
     /**
      * 绘制对勾的动画
@@ -432,7 +414,6 @@ public class SmartLoadingView extends View {
         });
     }
 
-
     private void initPaint() {//初始画笔
         //矩形画笔
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -447,14 +428,12 @@ public class SmartLoadingView extends View {
         paintOval.setAntiAlias(true);
         paintOval.setColor(normal_color);
 
-
         //文字画笔
         textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         textPaint.setTextSize(textSize);
         textPaint.setColor(textColor);
         textPaint.setTextAlign(Paint.Align.CENTER);
         textPaint.setAntiAlias(true);
-
 
         //打勾画笔
         okPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -475,7 +454,6 @@ public class SmartLoadingView extends View {
             obtainCircleAngle = height / 2;
         }
 
-
         //如果设置的字体大小大于控件的四分之三高度，那么默认最大字体大小
         if (textSize > (height * 3 / 4)) {
             textSize = height * 3 / 4;
@@ -491,14 +469,11 @@ public class SmartLoadingView extends View {
         }
         initOk();
         initAnimation();
-
     }
-
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
         //绘制控件
         draw_oval_to_circle(canvas);
         drawText(canvas);
@@ -522,14 +497,11 @@ public class SmartLoadingView extends View {
             }
             postInvalidate();
         }
-
         //绘制打勾
         if (startDrawOk) {
             canvas.drawPath(path, okPaint);
         }
-
     }
-
 
     private void draw_oval_to_circle(Canvas canvas) {
         rectf.left = current_left;
@@ -539,7 +511,6 @@ public class SmartLoadingView extends View {
         //画圆角矩形
         canvas.drawRoundRect(rectf, circleAngle, circleAngle, paint);
     }
-
 
     private int scrollSize;
     private boolean isShowLongText;//是否是长文字状态
@@ -595,10 +566,7 @@ public class SmartLoadingView extends View {
             //文字不超过控件长度
             canvas.drawText(buttonString, textRect.centerX(), baseline, textPaint);
         }
-
-
     }
-
 
     /**
      * 绘制对勾
@@ -612,7 +580,6 @@ public class SmartLoadingView extends View {
     }
 
     private boolean isCanClick = true;//是否可以被点击
-
 
     private boolean isAnimRuning = false;
 
@@ -634,7 +601,6 @@ public class SmartLoadingView extends View {
         return isCanClick;
     }
 
-
     /**
      * 点击启动动画，
      * （这里是点击刚开始登录）
@@ -654,7 +620,6 @@ public class SmartLoadingView extends View {
             isShowLongText = false;
         }
     }
-
 
     //加载失败运行(默认加载失败文案)
     public void netFaile() {
@@ -715,7 +680,6 @@ public class SmartLoadingView extends View {
         });
     }
 
-
     //重置所有状态
     public void reset() {
         if (animator_draw_ok == null) {
@@ -748,14 +712,12 @@ public class SmartLoadingView extends View {
         }
     }
 
-
     //按钮不能被点击
     public void cannotClick() {
         isCanClick = false;
         paint.setColor(cannotclick_color);
         invalidate();
     }
-
 
     private Handler mHandler = new Handler() {
         @Override
@@ -818,7 +780,6 @@ public class SmartLoadingView extends View {
 
             }
         });
-
     }
 
     CirclBigView circlBigView = new CirclBigView(getContext());
@@ -838,7 +799,6 @@ public class SmartLoadingView extends View {
         isAnimRuning = false;
     }
 
-
     /**
      * 绘制打勾动画的接口回调
      */
@@ -849,7 +809,6 @@ public class SmartLoadingView extends View {
          */
         void animationOKFinish();
     }
-
 
     /**
      * 关注点击事件回调
@@ -872,14 +831,11 @@ public class SmartLoadingView extends View {
                         } else {
                             reset();
                         }
-
                     }
-
                 }
             }
         });
     }
-
 
     /**
      * 登录点击事件回调
@@ -898,7 +854,6 @@ public class SmartLoadingView extends View {
                         start();
                         loginClickListener.click();
                     }
-
                 }
             }
         });

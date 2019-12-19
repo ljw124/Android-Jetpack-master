@@ -144,7 +144,6 @@ public class ShadowLayout extends FrameLayout {
         setPading();
     }
 
-
     public void setPading() {
         int xPadding = (int) (mShadowLimit + Math.abs(mDx));
         int yPadding = (int) (mShadowLimit + Math.abs(mDy));
@@ -161,7 +160,6 @@ public class ShadowLayout extends FrameLayout {
             topPading = 0;
         }
 
-
         if (rightShow) {
             rightPading = xPadding;
         } else {
@@ -173,10 +171,8 @@ public class ShadowLayout extends FrameLayout {
         } else {
             bottomPading = 0;
         }
-
         setPadding(leftPading, topPading, rightPading, bottomPading);
     }
-
 
     @SuppressWarnings("deprecation")
     private void setBackgroundCompat(int w, int h) {
@@ -188,7 +184,6 @@ public class ShadowLayout extends FrameLayout {
             setBackground(drawable);
         }
     }
-
 
     private void initAttributes(AttributeSet attrs) {
         TypedArray attr = getContext().obtainStyledAttributes(attrs, R.styleable.ShadowLayout);
@@ -218,7 +213,6 @@ public class ShadowLayout extends FrameLayout {
             attr.recycle();
         }
     }
-
 
     private Bitmap createShadowBitmap(int shadowWidth, int shadowHeight, float cornerRadius, float shadowRadius,
                                       float dx, float dy, int shadowColor, int fillColor) {
@@ -256,7 +250,6 @@ public class ShadowLayout extends FrameLayout {
             shadowRect.right -= Math.abs(dx);
         }
 
-
         shadowPaint.setColor(fillColor);
         if (!isInEditMode()) {
             shadowPaint.setShadowLayer(shadowRadius, dx, dy, shadowColor);
@@ -265,7 +258,6 @@ public class ShadowLayout extends FrameLayout {
         canvas.drawRoundRect(shadowRect, cornerRadius, cornerRadius, shadowPaint);
         return output;
     }
-
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -284,7 +276,6 @@ public class ShadowLayout extends FrameLayout {
 //            canvas.drawRoundRect(rectf, mCornerRadius, mCornerRadius, paintStroke);
         }
     }
-
 
     public void isAddAlpha(int color) {
         //获取单签颜色值的透明度，如果没有设置透明度，默认加上#2a
@@ -309,15 +300,12 @@ public class ShadowLayout extends FrameLayout {
         }
     }
 
-
     public static int convertToColorInt(String argb)
             throws IllegalArgumentException {
 
         if (!argb.startsWith("#")) {
             argb = "#" + argb;
         }
-
         return Color.parseColor(argb);
     }
-
 }
