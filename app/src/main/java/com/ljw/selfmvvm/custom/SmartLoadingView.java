@@ -707,8 +707,8 @@ public class SmartLoadingView extends View {
             isShowLongText = false;
         }
         scrollSize = buttonString.length() * textSize - width + height * 2 / 3;
-        if (circlBigView != null) {
-            circlBigView.setCircleR(0);
+        if (circleBigView != null) {
+            circleBigView.setCircleR(0);
         }
     }
 
@@ -782,20 +782,20 @@ public class SmartLoadingView extends View {
         });
     }
 
-    CirclBigView circlBigView = new CirclBigView(getContext());
+    CircleBigView circleBigView = new CircleBigView(getContext());
 
     public void toBigCircle(Animator.AnimatorListener endListener) {
-        circlBigView.setRadius(this.getMeasuredHeight() / 2);
-        circlBigView.setColorBg(normal_color);
+        circleBigView.setRadius(this.getMeasuredHeight() / 2);
+        circleBigView.setColorBg(normal_color);
         int[] location = new int[2];
         this.getLocationOnScreen(location);
-        circlBigView.setXY(location[0] + this.getMeasuredWidth() / 2, location[1]);
-        if (circlBigView.getParent() == null) {
+        circleBigView.setXY(location[0] + this.getMeasuredWidth() / 2, location[1]);
+        if (circleBigView.getParent() == null) {
             ViewGroup activityDecorView = (ViewGroup) ((Activity) getContext()).getWindow().getDecorView();
             ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            activityDecorView.addView(circlBigView, layoutParams);
+            activityDecorView.addView(circleBigView, layoutParams);
         }
-        circlBigView.startShowAni(endListener);
+        circleBigView.startShowAni(endListener);
         isAnimRuning = false;
     }
 

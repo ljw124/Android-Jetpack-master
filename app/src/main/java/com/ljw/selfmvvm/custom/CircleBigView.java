@@ -16,7 +16,7 @@ import com.ljw.selfmvvm.utils.UIUtil;
  * Create by Ljw on 2019/12/19 11:35
  * 圆圈扩散自定义View
  */
-public class CirclBigView extends View {
+public class CircleBigView extends View {
 
     //圆圈扩散动画
     private ValueAnimator animator_big;
@@ -70,15 +70,15 @@ public class CirclBigView extends View {
         postInvalidate();
     }
 
-    public CirclBigView(Context context) {
+    public CircleBigView(Context context) {
         this(context, null);
     }
 
-    public CirclBigView(Context context, @Nullable AttributeSet attrs) {
+    public CircleBigView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public CirclBigView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public CircleBigView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         showPaint = new Paint();
         showPaint.setAntiAlias(true);
